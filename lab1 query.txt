@@ -1,0 +1,35 @@
+create table units(
+id int primary key identity(1,1) not null,
+name varchar(10) not null
+);
+create table dishType(
+id int primary key identity(1,1) not null,
+name varchar not null
+);
+create table dish(
+id int primary key identity(1,1) not null,
+type int foreign key references dishType(id),
+price int not null,
+name  varchar(50) not null,
+unit int foreign key  references units(id),
+);
+create table product(
+id int primary key not null,
+name varchar(50) not null,
+price int not null,
+unit int references units(id)
+);
+create table recipe(
+id int primary key identity(1,1) not null,
+dishType int foreign key references dishType(id),
+amount int foreign key references units(id),
+productKey int foreign key references product(id)
+);
+
+create table orders(
+id int primary key not null,
+dish int foreign key references dish(id),
+amount int foreign key references units(id),
+price int not null,
+date date not null
+);
