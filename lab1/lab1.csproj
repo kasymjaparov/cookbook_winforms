@@ -80,6 +80,19 @@
     <Compile Include="Orders_optional.Designer.cs">
       <DependentUpon>Orders_optional.cs</DependentUpon>
     </Compile>
+    <Compile Include="Order_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order_Update.Designer.cs">
+      <DependentUpon>Order_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Otchet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Otchet.Designer.cs">
+      <DependentUpon>Otchet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtchetQueries.cs" />
     <Compile Include="Product.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +130,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Orders_optional.resx">
       <DependentUpon>Orders_optional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order_Update.resx">
+      <DependentUpon>Order_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Otchet.resx">
+      <DependentUpon>Otchet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Product.resx">
       <DependentUpon>Product.cs</DependentUpon>

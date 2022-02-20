@@ -33,9 +33,7 @@ namespace lab1
             this.btnUnitUpdate = new System.Windows.Forms.Button();
             this.btnUnitSend = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
-            this.textBoxId = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
@@ -88,39 +86,20 @@ namespace lab1
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(190, 9);
+            this.label2.Location = new System.Drawing.Point(31, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 19);
             this.label2.TabIndex = 7;
             this.label2.Text = "Название";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(28, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 19);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "ID";
-            // 
             // textBoxName
             // 
             this.textBoxName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxName.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxName.Location = new System.Drawing.Point(193, 50);
+            this.textBoxName.Location = new System.Drawing.Point(34, 50);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(136, 27);
             this.textBoxName.TabIndex = 5;
-            // 
-            // textBoxId
-            // 
-            this.textBoxId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxId.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxId.Location = new System.Drawing.Point(31, 50);
-            this.textBoxId.Name = "textBoxId";
-            this.textBoxId.Size = new System.Drawing.Size(136, 27);
-            this.textBoxId.TabIndex = 6;
             // 
             // dataGridView1
             // 
@@ -137,12 +116,13 @@ namespace lab1
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(734, 286);
             this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellBtn_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(364, 9);
+            this.label3.Location = new System.Drawing.Point(205, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 19);
             this.label3.TabIndex = 7;
@@ -152,7 +132,7 @@ namespace lab1
             // 
             this.textBoxPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxPrice.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPrice.Location = new System.Drawing.Point(538, 50);
+            this.textBoxPrice.Location = new System.Drawing.Point(379, 50);
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.Size = new System.Drawing.Size(136, 27);
             this.textBoxPrice.TabIndex = 5;
@@ -161,7 +141,7 @@ namespace lab1
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(535, 9);
+            this.label4.Location = new System.Drawing.Point(376, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 19);
             this.label4.TabIndex = 7;
@@ -170,7 +150,7 @@ namespace lab1
             // comboBoxUnits
             // 
             this.comboBoxUnits.FormattingEnabled = true;
-            this.comboBoxUnits.Location = new System.Drawing.Point(349, 53);
+            this.comboBoxUnits.Location = new System.Drawing.Point(190, 53);
             this.comboBoxUnits.Name = "comboBoxUnits";
             this.comboBoxUnits.Size = new System.Drawing.Size(136, 24);
             this.comboBoxUnits.TabIndex = 12;
@@ -199,9 +179,7 @@ namespace lab1
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxPrice);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxName);
-            this.Controls.Add(this.textBoxId);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Product";
             this.Text = "Product";
@@ -217,9 +195,7 @@ namespace lab1
         private System.Windows.Forms.Button btnUnitUpdate;
         private System.Windows.Forms.Button btnUnitSend;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.TextBox textBoxId;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxPrice;

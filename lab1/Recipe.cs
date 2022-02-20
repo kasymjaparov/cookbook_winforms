@@ -51,6 +51,8 @@ namespace lab1
                 Label label = new Label();
                 TextBox productTextBox = new TextBox();
 
+                
+              
                 label.Location = new Point(100, 0 + x * 40);
                 productTextBox.Location = new Point(0, 0 + x * 40);
 
@@ -105,6 +107,23 @@ namespace lab1
 
             var unit = command.ExecuteNonQuery();
             connection.Close();
+        }
+        private string getPrice(string productName)
+        {
+            string pName="ds";
+            connection.Open();
+            command = new SqlCommand(dishQueries.getProductPrice, connection);
+
+            command.Parameters.Add("@productName", SqlDbType.VarChar);
+            command.Parameters["@productName"].Value = productName;
+
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+               pName= (string)reader[0];
+            }
+            connection.Close();
+            return pName;
         }
     }
 }

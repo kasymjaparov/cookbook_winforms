@@ -36,6 +36,7 @@ namespace lab1
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.label_otchet = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -117,11 +118,23 @@ namespace lab1
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.ordersBtn_Click);
             // 
+            // label_otchet
+            // 
+            this.label_otchet.AutoSize = true;
+            this.label_otchet.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_otchet.Location = new System.Drawing.Point(559, 388);
+            this.label_otchet.Name = "label_otchet";
+            this.label_otchet.Size = new System.Drawing.Size(64, 23);
+            this.label_otchet.TabIndex = 3;
+            this.label_otchet.Text = "Отчет";
+            this.label_otchet.Click += new System.EventHandler(this.otchet_label_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 437);
+            this.Controls.Add(this.label_otchet);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button4);
@@ -147,6 +160,7 @@ namespace lab1
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label_otchet;
     }
 }
 

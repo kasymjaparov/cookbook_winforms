@@ -20,6 +20,7 @@ namespace lab1
         SqlDataAdapter dataadapter;
         SqlCommand command;
         Messages messages = new Messages();
+        private int id=-1;
         public Units()
         {
             InitializeComponent();
@@ -28,7 +29,7 @@ namespace lab1
 
         private void btnUnitUpdate_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(textBoxId.Text) || String.IsNullOrEmpty(textBoxName.Text))
+            if (id<1 || String.IsNullOrEmpty(textBoxName.Text))
             {
                 MessageBox.Show(messages.validationIdNameForm);
             }
@@ -39,12 +40,11 @@ namespace lab1
                 command.Parameters.Add("@name", SqlDbType.VarChar);
                 command.Parameters["@name"].Value = textBoxName.Text;
                 command.Parameters.Add("@id", SqlDbType.Int);
-                command.Parameters["@id"].Value = textBoxId.Text;
+                command.Parameters["@id"].Value = id;
                 var unit = command.ExecuteNonQuery();
                 connection.Close();
                 getAll();
                 textBoxName.Clear();
-                textBoxId.Clear();
                 MessageBox.Show(messages.successChanged);
             }
            
@@ -91,6 +91,7 @@ namespace lab1
                 dataGridView1.DataSource = dt;
                 dataGridView1.BackgroundColor = Color.White;
                 dataGridView1.RowHeadersVisible = false;
+                dataGridView1.Columns["id"].Visible = false;
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 connection.Close();
 
@@ -109,7 +110,7 @@ namespace lab1
 
         private void btnUnitsDelete_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(textBoxId.Text))
+            if (id==-1)
             {
                 MessageBox.Show(messages.validationIdForm);
             }
@@ -118,19 +119,25 @@ namespace lab1
                 connection.Open();
                 command = new SqlCommand(unitsQueries.delete, connection);
                 command.Parameters.Add("@id", SqlDbType.Int);
-                command.Parameters["@id"].Value = textBoxId.Text;
+                command.Parameters["@id"].Value = id;
                 var unit = command.ExecuteNonQuery();
                 connection.Close();
                 getAll();
-                textBoxId.Clear();
                 MessageBox.Show(messages.successDeleted);
+                textBoxName.Clear();
             }
                 
         }
 
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Удалить - заполните поле ID \n\nДобавить - заполните поля Название\n\nИзменить - заполните поля ID, Название");
+            MessageBox.Show("Добавить - заполните поля Название\n\nИзменить - заполните полe, Название");
+        }
+
+        private void CellBtn_CLick(object sender, DataGridViewCellEventArgs e)
+        {
+            id = (int)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+            textBoxName.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
         }
     }
 }

@@ -24,6 +24,7 @@ namespace lab1
         SqlDataReader reader;
         SqlCommand command;
         Messages messages = new Messages();
+        private int id = -1;
         public Dish()
         {
             InitializeComponent();
@@ -79,14 +80,13 @@ namespace lab1
             {
                 textBoxName.Clear();
                 textBoxPrice.Clear();
-                textBoxId.Clear();
                 connection.Close();
             }
         }
 
         private void changeDish_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxName.Text) || string.IsNullOrEmpty(textBoxPrice.Text) || string.IsNullOrEmpty(textBoxId.Text))
+            if (string.IsNullOrEmpty(textBoxName.Text) || string.IsNullOrEmpty(textBoxPrice.Text) || id<1)
             {
                 MessageBox.Show(messages.validationPriceNameForm);
             }
@@ -102,7 +102,7 @@ namespace lab1
                 command.Parameters["@price"].Value = textBoxPrice.Text;
 
                 command.Parameters.Add("@id", SqlDbType.Int);
-                command.Parameters["@id"].Value = textBoxId.Text;
+                command.Parameters["@id"].Value = id;
 
                 command.Parameters.Add("@unitName", SqlDbType.VarChar);
                 command.Parameters["@unitName"].Value = comboBoxUnits.SelectedItem;
@@ -117,7 +117,7 @@ namespace lab1
                 
 
                 var recipeMap = new Dictionary<string, object>();
-                recipeMap.Add("id", textBoxId.Text);
+                recipeMap.Add("id", id);
                 recipeMap.Add("name", textBoxName.Text);
                 recipeMap.Add("price", textBoxPrice.Text);
                 recipeMap.Add("unitName", comboBoxUnits.SelectedItem);
@@ -130,7 +130,7 @@ namespace lab1
 
         private void deleteDish_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(textBoxId.Text))
+            if (id<1)
             {
                 MessageBox.Show(messages.validationIdForm);
             }
@@ -139,11 +139,10 @@ namespace lab1
                 connection.Open();
                 command = new SqlCommand(dishQueries.delete, connection);
                 command.Parameters.Add("@id", SqlDbType.Int);
-                command.Parameters["@id"].Value = textBoxId.Text;
+                command.Parameters["@id"].Value = id;
                 var unit = command.ExecuteNonQuery();
                 connection.Close();
                 getAll();
-                textBoxId.Clear();
                 MessageBox.Show(messages.successDeleted);
             }
 
@@ -161,6 +160,7 @@ namespace lab1
                 connection.Close();
                 dataGridView1.BackgroundColor = Color.White;
                 dataGridView1.RowHeadersVisible = false;
+                dataGridView1.Columns["id"].Visible = false;
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
               
             }
@@ -240,7 +240,7 @@ namespace lab1
 
         private void ClickRowEvent(object sender, DataGridViewCellEventArgs e)
         {
-            textBoxId.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            id = (int)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
             textBoxName.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             textBoxPrice.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             comboBoxTypes.SelectedItem = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();

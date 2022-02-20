@@ -29,40 +29,20 @@ namespace lab1
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxId = new System.Windows.Forms.TextBox();
             this.checkBoxProducts = new System.Windows.Forms.CheckedListBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnAbout = new System.Windows.Forms.Button();
             this.btnUnitsDelete = new System.Windows.Forms.Button();
             this.btnUnitSend = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(9, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 19);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "ID";
-            // 
-            // textBoxId
-            // 
-            this.textBoxId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxId.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxId.Location = new System.Drawing.Point(12, 45);
-            this.textBoxId.Name = "textBoxId";
-            this.textBoxId.Size = new System.Drawing.Size(53, 27);
-            this.textBoxId.TabIndex = 22;
             // 
             // checkBoxProducts
             // 
             this.checkBoxProducts.CheckOnClick = true;
             this.checkBoxProducts.FormattingEnabled = true;
-            this.checkBoxProducts.Location = new System.Drawing.Point(618, 12);
+            this.checkBoxProducts.Location = new System.Drawing.Point(13, 8);
             this.checkBoxProducts.Name = "checkBoxProducts";
             this.checkBoxProducts.Size = new System.Drawing.Size(170, 174);
             this.checkBoxProducts.TabIndex = 28;
@@ -87,7 +67,7 @@ namespace lab1
             // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(292, 188);
+            this.btnAbout.Location = new System.Drawing.Point(427, 188);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(116, 38);
             this.btnAbout.TabIndex = 33;
@@ -121,34 +101,43 @@ namespace lab1
             this.btnUnitSend.UseVisualStyleBackColor = false;
             this.btnUnitSend.Click += new System.EventHandler(this.addBtn);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DarkBlue;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.ForeColor = System.Drawing.Color.Snow;
+            this.button1.Location = new System.Drawing.Point(278, 188);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(111, 38);
+            this.button1.TabIndex = 30;
+            this.button1.Text = "Изменить";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.UpdateBtn_Click);
+            // 
             // Orders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnAbout);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnUnitsDelete);
             this.Controls.Add(this.btnUnitSend);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.checkBoxProducts);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxId);
             this.Name = "Orders";
             this.Text = "Orders";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxId;
         private System.Windows.Forms.CheckedListBox checkBoxProducts;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.Button btnUnitsDelete;
         private System.Windows.Forms.Button btnUnitSend;
+        private System.Windows.Forms.Button button1;
     }
 }

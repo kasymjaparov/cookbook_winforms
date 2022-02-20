@@ -16,6 +16,7 @@ namespace lab1
         public string addRecipes = "insert into recipe(dish_id,product_id,amount) values ((select id from dish where name = @dishName),(select id from product where name = @productName),@amount)";
         public string getAllProducts = "select product.name,recipe.amount,units.name from dish inner join recipe on dish.id=recipe.dish_id inner join product on product.id = recipe.product_id inner join units on product.unit=units.id where dish.name = @dishName";
         public string deleteRecipe = "delete from recipe where dish_id=(select id from dish where name = @dishName)";
+        public string getProductPrice = "select units.name from product inner join units on product.unit=units.id where product.name = @productName";
 
     }
 }

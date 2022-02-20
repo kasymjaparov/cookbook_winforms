@@ -30,9 +30,7 @@ namespace lab1
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBoxId = new System.Windows.Forms.TextBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnUnitSend = new System.Windows.Forms.Button();
             this.btnUnitUpdate = new System.Windows.Forms.Button();
@@ -56,40 +54,22 @@ namespace lab1
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(752, 286);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // textBoxId
-            // 
-            this.textBoxId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxId.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxId.Location = new System.Drawing.Point(25, 51);
-            this.textBoxId.Name = "textBoxId";
-            this.textBoxId.Size = new System.Drawing.Size(136, 27);
-            this.textBoxId.TabIndex = 1;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellBtn_CLick);
             // 
             // textBoxName
             // 
             this.textBoxName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxName.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxName.Location = new System.Drawing.Point(193, 51);
+            this.textBoxName.Location = new System.Drawing.Point(25, 50);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(136, 27);
             this.textBoxName.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(22, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 19);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "ID";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(190, 10);
+            this.label2.Location = new System.Drawing.Point(22, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 19);
             this.label2.TabIndex = 2;
@@ -154,9 +134,7 @@ namespace lab1
             this.Controls.Add(this.btnUnitUpdate);
             this.Controls.Add(this.btnUnitSend);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxName);
-            this.Controls.Add(this.textBoxId);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Units";
             this.Text = "Units";
@@ -169,9 +147,7 @@ namespace lab1
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBoxId;
         private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnUnitSend;
         private System.Windows.Forms.Button btnUnitUpdate;

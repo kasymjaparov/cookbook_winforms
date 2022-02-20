@@ -23,6 +23,7 @@ namespace lab1
         SqlDataAdapter dataadapter;
         SqlDataReader reader;
         SqlCommand command;
+        private int id;
         public Orders()
         {
             InitializeComponent();
@@ -65,6 +66,7 @@ namespace lab1
                 connection.Close();
                 dataGridView1.BackgroundColor = Color.White;
                 dataGridView1.RowHeadersVisible = false;
+                dataGridView1.Columns["id"].Visible = false;
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             }
@@ -112,7 +114,7 @@ namespace lab1
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(textBoxId.Text))
+            if (id<1)
             {
                 MessageBox.Show("Заполните поле Id");
             }
@@ -121,25 +123,23 @@ namespace lab1
                 connection.Open();
                 command = new SqlCommand(ordersQueries.delete, connection);
                 command.Parameters.Add("@id", SqlDbType.Int);
-                command.Parameters["@id"].Value = textBoxId.Text;
+                command.Parameters["@id"].Value = id;
                 var unit = command.ExecuteNonQuery();
                 connection.Close();
                 getAll();
-                textBoxId.Clear();
                 MessageBox.Show("Успешно удалено");
             }
         }
 
         private void Cell_click(object sender, DataGridViewCellEventArgs e)
         {
-            textBoxId.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            id =(int) dataGridView1.Rows[e.RowIndex].Cells[0].Value;
         }
 
         private void Cell_doubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int orderId = (int)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
             StringBuilder products = new StringBuilder("В заказе присутствуют такие блюда как:\n");
-            Console.WriteLine("dbl");
             connection.Open();
             command = new SqlCommand(ordersQueries.getDescAboutorder, connection);
             command.Parameters.Add("@orderId", SqlDbType.Int);
@@ -163,7 +163,16 @@ namespace lab1
 
         private void desc_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Удалить - заполните поле ID \n\nДобавить - выберите блюда");
+            MessageBox.Show("Добавить - выберите блюда");
+        }
+
+        private void UpdateBtn_Click(object sender, EventArgs e)
+        {
+            var orderMap = new Dictionary<string, object>();
+            orderMap.Add("orders", checkBoxProducts);
+            orderMap.Add("orderId", id);
+            Order_Update orderUpdate = new Order_Update(orderMap);
+            orderUpdate.Show();
         }
     }
 }

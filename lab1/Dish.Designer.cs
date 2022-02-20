@@ -36,9 +36,7 @@ namespace lab1
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
-            this.textBoxId = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBoxUnits = new System.Windows.Forms.ComboBox();
@@ -101,7 +99,7 @@ namespace lab1
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(505, 8);
+            this.label4.Location = new System.Drawing.Point(433, 7);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 19);
             this.label4.TabIndex = 18;
@@ -111,7 +109,7 @@ namespace lab1
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(88, 8);
+            this.label2.Location = new System.Drawing.Point(16, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 19);
             this.label2.TabIndex = 20;
@@ -121,38 +119,19 @@ namespace lab1
             // 
             this.textBoxPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxPrice.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPrice.Location = new System.Drawing.Point(509, 49);
+            this.textBoxPrice.Location = new System.Drawing.Point(437, 48);
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.Size = new System.Drawing.Size(90, 27);
             this.textBoxPrice.TabIndex = 15;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(11, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 19);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "ID";
             // 
             // textBoxName
             // 
             this.textBoxName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxName.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxName.Location = new System.Drawing.Point(91, 49);
+            this.textBoxName.Location = new System.Drawing.Point(19, 48);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(136, 27);
             this.textBoxName.TabIndex = 16;
-            // 
-            // textBoxId
-            // 
-            this.textBoxId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxId.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxId.Location = new System.Drawing.Point(14, 49);
-            this.textBoxId.Name = "textBoxId";
-            this.textBoxId.Size = new System.Drawing.Size(53, 27);
-            this.textBoxId.TabIndex = 17;
             // 
             // dataGridView1
             // 
@@ -176,7 +155,7 @@ namespace lab1
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(242, 8);
+            this.label5.Location = new System.Drawing.Point(170, 7);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 19);
             this.label5.TabIndex = 19;
@@ -186,7 +165,7 @@ namespace lab1
             // comboBoxUnits
             // 
             this.comboBoxUnits.FormattingEnabled = true;
-            this.comboBoxUnits.Location = new System.Drawing.Point(246, 52);
+            this.comboBoxUnits.Location = new System.Drawing.Point(174, 51);
             this.comboBoxUnits.Name = "comboBoxUnits";
             this.comboBoxUnits.Size = new System.Drawing.Size(102, 24);
             this.comboBoxUnits.TabIndex = 25;
@@ -195,7 +174,7 @@ namespace lab1
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(376, 8);
+            this.label3.Location = new System.Drawing.Point(304, 7);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 19);
             this.label3.TabIndex = 19;
@@ -205,7 +184,7 @@ namespace lab1
             // comboBoxTypes
             // 
             this.comboBoxTypes.FormattingEnabled = true;
-            this.comboBoxTypes.Location = new System.Drawing.Point(380, 52);
+            this.comboBoxTypes.Location = new System.Drawing.Point(308, 51);
             this.comboBoxTypes.Name = "comboBoxTypes";
             this.comboBoxTypes.Size = new System.Drawing.Size(102, 24);
             this.comboBoxTypes.TabIndex = 25;
@@ -214,7 +193,7 @@ namespace lab1
             // 
             this.checkBoxProducts.CheckOnClick = true;
             this.checkBoxProducts.FormattingEnabled = true;
-            this.checkBoxProducts.Location = new System.Drawing.Point(618, 49);
+            this.checkBoxProducts.Location = new System.Drawing.Point(576, 12);
             this.checkBoxProducts.Name = "checkBoxProducts";
             this.checkBoxProducts.Size = new System.Drawing.Size(170, 174);
             this.checkBoxProducts.TabIndex = 27;
@@ -236,9 +215,7 @@ namespace lab1
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxPrice);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxName);
-            this.Controls.Add(this.textBoxId);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Dish";
             this.Text = "Dish";
@@ -257,9 +234,7 @@ namespace lab1
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxPrice;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.TextBox textBoxId;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBoxUnits;

@@ -22,6 +22,7 @@ namespace lab1
         SqlDataReader reader;
         SqlCommand command;
         Messages messages = new Messages();
+        private int id = -1;
         public Product()
         {
             InitializeComponent();
@@ -40,7 +41,7 @@ namespace lab1
             command.Parameters["@price"].Value = textBoxPrice.Text;
 
             command.Parameters.Add("@id", SqlDbType.Int);
-            command.Parameters["@id"].Value = textBoxId.Text;
+            command.Parameters["@id"].Value = id;
 
             command.Parameters.Add("@unitName", SqlDbType.VarChar);
             command.Parameters["@unitName"].Value = comboBoxUnits.SelectedItem;
@@ -49,7 +50,6 @@ namespace lab1
             connection.Close();
             getAll();
             textBoxName.Clear();
-            textBoxId.Clear();
             textBoxPrice.Clear();
             MessageBox.Show(messages.successChanged);
         }
@@ -84,7 +84,6 @@ namespace lab1
             finally {
                 textBoxName.Clear();
                 textBoxPrice.Clear();
-                textBoxId.Clear();
                 connection.Close();
             }
             
@@ -101,6 +100,7 @@ namespace lab1
                 dataGridView1.DataSource = dt;
                 dataGridView1.BackgroundColor = Color.White;
                 dataGridView1.RowHeadersVisible = false;
+                dataGridView1.Columns["id"].Visible = false;
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 connection.Close();
             }
@@ -119,7 +119,7 @@ namespace lab1
 
         private void btnUnitsDelete_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(textBoxId.Text))
+            if (id<1)
             {
                 MessageBox.Show(messages.validationIdForm);
             }
@@ -128,11 +128,12 @@ namespace lab1
                 connection.Open();
                 command = new SqlCommand(productQueries.delete, connection);
                 command.Parameters.Add("@id", SqlDbType.Int);
-                command.Parameters["@id"].Value = textBoxId.Text;
+                command.Parameters["@id"].Value =id;
                 var unit = command.ExecuteNonQuery();
                 connection.Close();
                 getAll();
-                textBoxId.Clear();
+                textBoxName.Clear();
+                textBoxPrice.Clear();
                 MessageBox.Show(messages.successDeleted);
             }
         }
@@ -161,6 +162,14 @@ namespace lab1
         private void BtnAbout(object sender, EventArgs e)
         {
             MessageBox.Show("Удалить - заполните поле ID \n\nДобавить - заполните поля Название, Ед.изм, Цена\n\nИзменить - заполните поля ID, Ед.изм, Название, Цена");
+        }
+
+        private void CellBtn_Click(object sender, DataGridViewCellEventArgs e)
+        {
+            id = (int)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+            textBoxName.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            textBoxPrice.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            comboBoxUnits.SelectedItem = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
         }
     }
 }

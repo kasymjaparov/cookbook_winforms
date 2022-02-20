@@ -55,5 +55,11 @@ namespace lab1
             Orders orders = new Orders();
             orders.Show();
         }
+
+        private void otchet_label_Click(object sender, EventArgs e)
+        {
+            Otchet otchet = new Otchet();
+            otchet.Show();
+        }
     }
 }

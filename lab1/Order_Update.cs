@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace lab1
 {
-    public partial class Orders_optional : Form
+    public partial class Order_Update : Form
     {
         static string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         DishQueries dishQueries = new DishQueries();
@@ -24,16 +24,15 @@ namespace lab1
         SqlDataAdapter dataadapter;
         SqlDataReader reader;
         SqlCommand command;
-        private List<TextBox> textBoxes = new List<TextBox>();
+
         private List<Label> labels = new List<Label>();
+        private List<TextBox> textBoxes = new List<TextBox>();
         private int orderId;
-        private int totalPrice = 0;
-        private List<int> prices = new List<int>();
-        public Orders_optional(Dictionary<string, object> dishState)
+        public Order_Update(Dictionary<string, object> orderState)
         {
             InitializeComponent();
-            var orders = (CheckedListBox)dishState["orders"];
-            this.orderId=(int)dishState["id"];
+            var orders = (CheckedListBox)orderState["orders"];
+            this.orderId = (int)orderState["orderId"];
             for (int x = 0; x < orders.CheckedItems.Count; x++)
             {
                 Label label = new Label();
@@ -50,10 +49,9 @@ namespace lab1
                 textBoxes.Add(productTextBox);
                 labels.Add(label);
             }
-            getPrices();
-            
         }
-        
+       
+       
         private void addBtn_Click(object sender, EventArgs e)
         {
             StringBuilder successMessage = new StringBuilder($"\tВаш заказ № {orderId}\n");
@@ -71,18 +69,32 @@ namespace lab1
 
                     command.Parameters.Add("@dishName", SqlDbType.VarChar);
                     command.Parameters["@dishName"].Value = (string)labels[i].Text;
-                    successMessage.Append($"{labels[i].Text} - {textBoxes[i].Text} штук\n");
+
                     var unit = command.ExecuteNonQuery();
                     connection.Close();
                 }
                 connection.Open();
-                command = new SqlCommand(ordersQueries.updateOrder, connection);
-                for (int i = 0; i < textBoxes.Count; i++)
+                command = new SqlCommand(ordersQueries.getOrderPrice, connection);
+                command.Parameters.Add("@orderId", SqlDbType.Int);
+                command.Parameters["@orderId"].Value = orderId;
+                reader = command.ExecuteReader();
+                int sum = 0;
+                if (reader.HasRows)
                 {
-                    totalPrice += prices[i] * int.Parse(textBoxes[i].Text);
+                    while (reader.Read())
+                    {
+
+                        int price = (int)reader.GetValue(0);
+                        int amount = (int)reader.GetValue(1);
+                        sum += price * amount;
+                    }
                 }
+                sum += (int)Math.Round(sum * 0.1);
+                connection.Close();
+                connection.Open();
+                command = new SqlCommand(ordersQueries.updateOrder, connection);
                 command.Parameters.Add("@price", SqlDbType.Int);
-                command.Parameters["@price"].Value =totalPrice+totalPrice*0.1;
+                command.Parameters["@price"].Value = sum;
 
                 DateTime localDate = DateTime.Now;
                 command.Parameters.Add("@date", SqlDbType.DateTime);
@@ -90,11 +102,10 @@ namespace lab1
 
                 command.Parameters.Add("@id", SqlDbType.Int);
                 command.Parameters["@id"].Value = orderId;
+                
                 var updateOrder = command.ExecuteNonQuery();
                 connection.Close();
-                successMessage.Append($"Время заказа - {localDate}\nОбщая сумма - {totalPrice + totalPrice * 0.1} сом");
-                MessageBox.Show(successMessage.ToString());
-                writeOrder(successMessage.ToString(),orderId);
+                writeOrder(successMessage, sum);
                 this.Close();
                 Orders ordersForm = new Orders();
                 ordersForm.Show();
@@ -104,41 +115,38 @@ namespace lab1
                 MessageBox.Show("Заполните все формы");
             }
         }
-        private void getPrices()
+        private void writeOrder(StringBuilder message,int sum)
         {
-            try
+            string writePath = @"C:\Users\Professional\Desktop\orders\order" + orderId+".txt";
+            connection.Open();
+            command = new SqlCommand(ordersQueries.getFullInfoOrder, connection);
+            command.Parameters.Add("@orderId", SqlDbType.Int);
+            command.Parameters["@orderId"].Value = orderId;
+
+            reader = command.ExecuteReader();
+            if (reader.HasRows)
             {
-                for (int i = 0; i < labels.Count; i++)
+                while (reader.Read())
                 {
-                    connection.Open();
-                    command = new SqlCommand(ordersQueries.getPrice, connection);
-                    command.Parameters.Add("@dishName", SqlDbType.VarChar);
-                    command.Parameters["@dishName"].Value = labels[i].Text;
-                    reader = command.ExecuteReader();
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            prices.Add((int)reader.GetValue(0));
-                        }
-                    }
-                    connection.Close();
+
+                    string name = reader.GetValue(0).ToString();
+                    int amount = (int)reader.GetValue(1);
+                    int price = (int)reader.GetValue(2);
+                    int totalPrice = (int)reader.GetValue(3);
+                    string date = reader.GetValue(4).ToString();
+                    message.Append($"{name} - {price}сом * {amount} = {amount*price} сом\n");
                 }
-                    
             }
-            catch (Exception ex)
+            message.Append("+10% чаевых\n");
+            message.Append($"Сумма {sum}сом");
+            MessageBox.Show(message.ToString());
+            
+            connection.Close();
+            FileInfo fileInf = new FileInfo(writePath);
+            if (fileInf.Exists)
             {
-                Console.WriteLine("get all exception");
-                Console.WriteLine(ex.Message);
+                fileInf.Delete();
             }
-            finally
-            {
-                connection.Close();
-            }
-        }
-        private void writeOrder(string message,int id)
-        {
-            string writePath = @"C:\Users\Professional\Desktop\orders\order"+id+".txt";
             try
             {
                 using (StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default))
